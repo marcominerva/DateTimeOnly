@@ -1,5 +1,4 @@
-﻿using DateTimeOnly.DataAccessLayer.Converters;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace DateTimeOnly.DataAccessLayer;
 
@@ -16,13 +15,5 @@ public class DataContext : DbContext
         _ = optionsBuilder.UseSqlServer(connectionString);
 
         base.OnConfiguring(optionsBuilder);
-    }
-
-    protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
-    {
-        _ = configurationBuilder.Properties<DateOnly>().HaveConversion<DateOnlyConverter, DateOnlyComparer>().HaveColumnType("date");
-        _ = configurationBuilder.Properties<TimeOnly>().HaveConversion<TimeOnlyConverter, TimeOnlyComparer>().HaveColumnType("time(7)");
-
-        base.ConfigureConventions(configurationBuilder);
     }
 }
