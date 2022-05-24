@@ -38,12 +38,12 @@ async Task ExecuteEntityFrameworkCoreSampleAsync()
 {
     using var db = new DataContext();
 
-    var invoices = await db.Invoices.ToListAsync();
+    var invoices = await db.Invoices.OrderByDescending(i => i.Date).ToListAsync();
 
-    var newInvoice = new DateTimeOnly.DataAccessLayer.Entities.Invoice { Amount = 420, Date = new DateOnly(2021, 1, 1) };
-    _ = db.Invoices.Add(newInvoice);
+    //var newInvoice = new DateTimeOnly.DataAccessLayer.Entities.Invoice { Amount = 420, Date = new DateOnly(2021, 1, 1) };
+    //_ = db.Invoices.Add(newInvoice);
 
-    _ = await db.SaveChangesAsync();
+    //_ = await db.SaveChangesAsync();
 }
 
 public class Invoice
