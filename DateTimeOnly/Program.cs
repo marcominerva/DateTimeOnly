@@ -1,19 +1,19 @@
-﻿ExecuteJsonSample();
-await ExecuteEntityFrameworkCoreSampleAsync();
+﻿using DateTimeOnly.DataAccessLayer;
+
+ExecuteJsonSample();
+//await ExecuteEntityFrameworkCoreSampleAsync();
 
 Console.ReadLine();
 
-void ExecuteJsonSample()
+static void ExecuteJsonSample()
 {
-    var dateOnly = DateOnly.FromDateTime(DateTime.Now);
-    var timeOnly = TimeOnly.FromDateTime(DateTime.Now);
 
-    Console.WriteLine(dateOnly);
-    Console.WriteLine(timeOnly);
 }
 
-Task ExecuteEntityFrameworkCoreSampleAsync()
+static Task ExecuteEntityFrameworkCoreSampleAsync()
 {
+    using var db = new DataContext();
+
     return Task.CompletedTask;
 }
 
